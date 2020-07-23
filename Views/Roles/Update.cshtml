@@ -1,0 +1,48 @@
+﻿@using Ejercicio.Web.Controllers
+@model EdicionRol
+
+<h1>Actualizar Rol</h1>
+<a asp-action="Index" class="btn btn-secondary">Regresar</a>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post" asp-action="Update">
+    <input type="hidden" name="RoleName" value="@Model.Rol.Name" />
+    <input type="hidden" name="RoleId" value="@Model.Rol.Id" />
+
+    <h2> Anadir a @Model.Rol.Name</h2>
+    <br />
+    <table class="table table-dark">
+        @foreach (var usuario in Model.noMiembros)
+        {
+            <thead>
+                <tr>Correo Registrado</tr>
+                <tr>Correo Marcar Accesiblidad</tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@usuario.UserName</td>
+                    <td> <input type="checkbox" value="@usuario.Id" name="AumentarIds" /> </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+
+    <h2> Remover de @Model.Rol.Name</h2>
+    <br />
+    <table class="table table-dark">
+        @foreach (var usuario in Model.miembros)
+        {
+            <thead>
+                <tr>Correo Registrado</tr>
+                <tr>Correo Marcar Accesiblidad</tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@usuario.UserName</td>
+                    <td> <input type="checkbox" value="@usuario.Id" name="BorrarIds" /> </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+    <input type="submit" value="Grabar" class="btn btn-primary" />
+</form>
